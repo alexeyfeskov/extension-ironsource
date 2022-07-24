@@ -1,0 +1,8 @@
+repositories {
+}
+
+dependencies {
+  // Add Vungle Network
+  implementation 'com.ironsource.adapters:vungleadapter:4.3.17'
+  implementation 'com.vungle:publisher-sdk-android:6.11.0'
+}
