@@ -133,8 +133,8 @@ static int Lua_LoadBanner(lua_State* L)
 {
     DM_LUA_STACK_CHECK(L, 0);
     BannerSize bannerSize_lua = SIZE_BANNER;
-    if (lua_type(L, 2) != LUA_TNONE) {
-        bannerSize_lua = (BannerSize)luaL_checknumber(L, 2);
+    if (lua_type(L, 1) != LUA_TNONE) {
+        bannerSize_lua = (BannerSize)luaL_checknumber(L, 1);
     }
     LoadBanner(bannerSize_lua);
     return 0;
