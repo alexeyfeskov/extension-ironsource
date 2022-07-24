@@ -1,0 +1,8 @@
+repositories {
+}
+
+dependencies {
+  // Add AdMob and Ad Manager Network
+  implementation 'com.google.android.gms:play-services-ads:21.0.0'
+  implementation 'com.ironsource.adapters:admobadapter:4.3.29'
+}
