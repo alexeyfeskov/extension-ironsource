@@ -1,0 +1,10 @@
+repositories {
+}
+
+dependencies {
+  // Add Chartboost Network
+  implementation 'com.ironsource.adapters:chartboostadapter:4.3.8'
+  implementation 'com.chartboost:chartboost-sdk:8.3.1'
+  implementation "com.google.android.gms:play-services-base:17.1.1"
+  implementation "com.google.android.gms:play-services-ads-identifier:17.0.0"
+}
