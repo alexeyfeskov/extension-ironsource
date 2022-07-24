@@ -15,9 +15,7 @@ dynamic_orientation = 1
 [project]
 title = IronSourceExample
 dependencies#0 = https://github.com/andsve/dirtylarry/archive/master.zip
-
-[library]
-include_dirs = extension-ironsource
+dependencies#1 = https://github.com/alexeyfeskov/extension-ironsource/archive/main.zip
 
 [android]
 package = com.defold.IronSourceExample

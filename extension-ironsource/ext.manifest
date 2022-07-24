@@ -1,7 +1,0 @@
-# C++ symbol in your extension
-name: "IronSourceExt"
-
-platforms:
-    android:
-        context:
-            aaptExtraPackages: ['androidx.work', 'com.google.android.gms.common']
