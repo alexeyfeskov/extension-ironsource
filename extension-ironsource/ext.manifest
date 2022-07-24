@@ -4,4 +4,4 @@ name: "IronSourceExt"
 platforms:
     android:
         context:
-            aaptExtraPackages: ['androidx.work', 'com.google.android.gms.common']
+            aaptExtraPackages: ['androidx.startup', 'androidx.work', 'com.google.android.gms.common']
