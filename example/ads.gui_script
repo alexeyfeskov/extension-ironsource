@@ -181,6 +181,11 @@ function on_input(self, action_id, action)
     local prev_type = self.ad_type
     
     dirtylarry:button("initialization", action_id, action, function ()
+        -- https://developers.is.com/ironsource-mobile/android/regulation-advanced-settings
+        ironsource.set_has_user_consent(true) -- GDPR https://developers.is.com/ironsource-mobile/general/making-sure-youre-compliant-post-gdpr/
+        ironsource.set_is_age_restricted_user(false) -- https://developers.is.com/ironsource-mobile/general/ironsource-mobile-child-directed-apps/
+        ironsource.set_do_not_sell(false) -- CCPA https://developers.is.com/ironsource-mobile/android/ironsource-ccpa-compliance/
+
         ironsource.initialize(appKey)
     end)
 

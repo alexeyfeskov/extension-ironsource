@@ -23,6 +23,9 @@ struct IronSource
     jmethodID      m_Initialize;
     jmethodID      m_OnActivateApp;
     jmethodID      m_OnDeactivateApp;
+    jmethodID      m_SetHasUserConsent;
+    jmethodID      m_SetIsAgeRestrictedUser;
+    jmethodID      m_SetDoNotSell;
     jmethodID      m_ValidateIntegration;
 
     jmethodID      m_LoadInterstitial;
@@ -129,6 +132,9 @@ static void InitJNIMethods(JNIEnv* env, jclass cls)
     g_ironsource.m_Initialize             = env->GetMethodID(cls, "initialize", "(Ljava/lang/String;)V");
     g_ironsource.m_OnActivateApp          = env->GetMethodID(cls, "onActivateApp", "()V");
     g_ironsource.m_OnDeactivateApp        = env->GetMethodID(cls, "onDeactivateApp", "()V");
+    g_ironsource.m_SetHasUserConsent      = env->GetMethodID(cls, "setHasUserConsent", "(Z)V");
+    g_ironsource.m_SetIsAgeRestrictedUser = env->GetMethodID(cls, "setIsAgeRestrictedUser", "(Z)V");
+    g_ironsource.m_SetDoNotSell           = env->GetMethodID(cls, "setDoNotSell", "(Z)V");
     g_ironsource.m_ValidateIntegration    = env->GetMethodID(cls, "validateIntegration", "()V");
 
     g_ironsource.m_LoadInterstitial       = env->GetMethodID(cls, "loadInterstitial", "()V");
@@ -174,6 +180,21 @@ void OnDeactivateApp()
 void Initialize(const char* appKey)
 {
     CallVoidMethodChar(g_ironsource.m_IronSourceJNI, g_ironsource.m_Initialize, appKey);
+}
+
+void SetHasUserConsent(bool hasConsent)
+{
+    CallVoidMethodBool(g_ironsource.m_IronSourceJNI, g_ironsource.m_SetHasUserConsent, hasConsent);
+}
+
+void SetIsAgeRestrictedUser(bool ageRestricted)
+{
+    CallVoidMethodBool(g_ironsource.m_IronSourceJNI, g_ironsource.m_SetIsAgeRestrictedUser, ageRestricted);
+}
+
+void SetDoNotSell(bool doNotSell)
+{
+    CallVoidMethodBool(g_ironsource.m_IronSourceJNI, g_ironsource.m_SetDoNotSell, doNotSell);
 }
 
 void ValidateIntegration()

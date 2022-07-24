@@ -91,6 +91,18 @@ public class IronSourceJNI {
         IronSource.onPause(mActivity);
     }
 
+    public void setHasUserConsent(boolean hasUserConsent) {
+        IronSource.setConsent(hasUserConsent);
+    }
+
+    public void setIsAgeRestrictedUser(boolean isAgeRestrictedUser) {
+        IronSource.setMetaData("is_child_directed", isAgeRestrictedUser ? "true" : "false");
+    }
+
+    public void setDoNotSell(boolean doNotSell) {
+        IronSource.setMetaData("do_not_sell", doNotSell ? "true" : "false");
+    }
+
     public void validateIntegration() {
         IntegrationHelper.validateIntegration(mActivity);
     }

@@ -27,6 +27,9 @@ void OnActivateApp();
 void OnDeactivateApp();
 
 void Initialize(const char* appKey);
+void SetHasUserConsent(bool hasConsent);
+void SetIsAgeRestrictedUser(bool ageRestricted);
+void SetDoNotSell(bool doNotSell);
 void ValidateIntegration();
 
 void LoadInterstitial();
