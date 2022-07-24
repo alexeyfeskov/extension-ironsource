@@ -1,0 +1,8 @@
+repositories {
+}
+
+dependencies {
+  // Add AdColony Network
+  implementation 'com.ironsource.adapters:adcolonyadapter:4.3.12'
+  implementation 'com.adcolony:sdk:4.7.1'
+}
