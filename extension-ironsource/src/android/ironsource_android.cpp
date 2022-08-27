@@ -1,10 +1,9 @@
 #if defined(DM_PLATFORM_ANDROID)
 
-#include <jni.h>
+#include <dmsdk/dlib/android.h>
 
 #include "../ironsource_private.h"
 #include "../ironsource_callback_private.h"
-#include "ironsource_jni.h"
 #include "com_defold_ironsource_IronSourceJNI.h"
 
 JNIEXPORT void JNICALL Java_com_defold_ironsource_IronSourceJNI_addToQueue(JNIEnv * env, jclass cls, jint jmsg, jstring jjson)
@@ -48,16 +47,17 @@ static IronSource g_ironsource;
 
 static void CallVoidMethod(jobject instance, jmethodID method)
 {
-    ThreadAttacher attacher;
-    JNIEnv *env = attacher.env;
+    
+    dmAndroid::ThreadAttacher threadAttacher;
+    JNIEnv* env = threadAttacher.GetEnv();
 
     env->CallVoidMethod(instance, method);
 }
 
 static bool CallBoolMethod(jobject instance, jmethodID method)
 {
-    ThreadAttacher attacher;
-    JNIEnv *env = attacher.env;
+    dmAndroid::ThreadAttacher threadAttacher;
+    JNIEnv* env = threadAttacher.GetEnv();
 
     jboolean return_value = (jboolean)env->CallBooleanMethod(instance, method);
     return JNI_TRUE == return_value;
@@ -65,16 +65,16 @@ static bool CallBoolMethod(jobject instance, jmethodID method)
 
 static void CallVoidMethodBool(jobject instance, jmethodID method, bool cbool)
 {
-    ThreadAttacher attacher;
-    JNIEnv *env = attacher.env;
+    dmAndroid::ThreadAttacher threadAttacher;
+    JNIEnv* env = threadAttacher.GetEnv();
 
     env->CallVoidMethod(instance, method, cbool);
 }
 
 static void CallVoidMethodChar(jobject instance, jmethodID method, const char* cstr)
 {
-    ThreadAttacher attacher;
-    JNIEnv *env = attacher.env;
+    dmAndroid::ThreadAttacher threadAttacher;
+    JNIEnv* env = threadAttacher.GetEnv();
 
     jstring jstr = NULL;
     if (cstr)
@@ -92,8 +92,8 @@ static void CallVoidMethodChar(jobject instance, jmethodID method, const char* c
 
 static void CallVoidMethodCharInt(jobject instance, jmethodID method, const char* cstr, int cint)
 {
-    ThreadAttacher attacher;
-    JNIEnv *env = attacher.env;
+    dmAndroid::ThreadAttacher threadAttacher;
+    JNIEnv* env = threadAttacher.GetEnv();
 
     jstring jstr = env->NewStringUTF(cstr);
     env->CallVoidMethod(instance, method, jstr, cint);
@@ -102,8 +102,8 @@ static void CallVoidMethodCharInt(jobject instance, jmethodID method, const char
 
 static void CallVoidMethodIntChar(jobject instance, jmethodID method, int cint, const char* cstr)
 {
-    ThreadAttacher attacher;
-    JNIEnv *env = attacher.env;
+    dmAndroid::ThreadAttacher threadAttacher;
+    JNIEnv* env = threadAttacher.GetEnv();
 
     jstring jstr = NULL;
     if (cstr)
@@ -121,8 +121,8 @@ static void CallVoidMethodIntChar(jobject instance, jmethodID method, int cint, 
 
 static void CallVoidMethodInt(jobject instance, jmethodID method, int cint)
 {
-    ThreadAttacher attacher;
-    JNIEnv *env = attacher.env;
+    dmAndroid::ThreadAttacher threadAttacher;
+    JNIEnv* env = threadAttacher.GetEnv();
 
     env->CallVoidMethod(instance, method, cint);
 }
@@ -155,16 +155,15 @@ static void InitJNIMethods(JNIEnv* env, jclass cls)
 
 void Initialize_Ext()
 {
-    ThreadAttacher attacher;
-    JNIEnv *env = attacher.env;
-    ClassLoader class_loader = ClassLoader(env);
-    jclass cls = class_loader.load("com.defold.ironsource.IronSourceJNI");
+    dmAndroid::ThreadAttacher threadAttacher;
+    JNIEnv* env = threadAttacher.GetEnv();
+    jclass cls = dmAndroid::LoadClass(env, "com.defold.ironsource.IronSourceJNI");
 
     InitJNIMethods(env, cls);
 
     jmethodID jni_constructor = env->GetMethodID(cls, "<init>", "(Landroid/app/Activity;)V");
 
-    g_ironsource.m_IronSourceJNI = env->NewGlobalRef(env->NewObject(cls, jni_constructor, dmGraphics::GetNativeAndroidActivity()));
+    g_ironsource.m_IronSourceJNI = env->NewGlobalRef(env->NewObject(cls, jni_constructor, threadAttacher.GetActivity()->clazz));
 }
 
 void OnActivateApp()
