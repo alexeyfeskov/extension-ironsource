@@ -37,3 +37,5 @@ clear_color_blue = 0.1
 [ironsource]
 admob_appid_android = ca-app-pub-3940256099942544~3347511713
 
+[ios]
+bundle_identifier = com.defold.IronSourceExample

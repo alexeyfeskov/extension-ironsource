@@ -10,3 +10,6 @@ Thumbs.db
 builtins
 debug.keystore
 debug.keystore.pass.txt
+*.mobileprovision
+manifest.public.der
+manifest.private.der

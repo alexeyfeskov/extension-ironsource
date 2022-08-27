@@ -1,4 +1,4 @@
-#if defined(DM_PLATFORM_ANDROID)// || defined(DM_PLATFORM_IOS)
+#if defined(DM_PLATFORM_ANDROID) || defined(DM_PLATFORM_IOS)
 
 #include "ironsource_callback_private.h"
 #include "utils/LuaUtils.h"

@@ -30,6 +30,7 @@ enum MessageEvent
     EVENT_DESTROYED =               10,
     EVENT_EXPANDED =                11,
     EVENT_COLLAPSED =               12,
+    EVENT_JSON_ERROR =              13,
 };
 
 struct CallbackData
