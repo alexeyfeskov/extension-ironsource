@@ -5,3 +5,9 @@ platforms:
     android:
         context:
             aaptExtraPackages: ['androidx.startup', 'androidx.work', 'com.google.android.gms.common']
+
+    ios:
+        context:
+            frameworks: ["UIKit", "AppTrackingTransparency", "AVFoundation"]
+            weakFrameworks: ["JavaScriptCore", "AdSupport"]
+            linkFlags:  ["-ObjC"]
